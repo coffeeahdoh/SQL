@@ -1,3 +1,5 @@
+#PostgreSQL
+
 SELECT r.rental_date, 
        r.return_date, 
 	   r.return_date - r.rental_date AS difference,
