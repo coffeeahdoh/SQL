@@ -6,8 +6,8 @@ SELECT r.rental_date,
        r.return_date, 
 	   r.return_date - r.rental_date AS difference,
        (CASE WHEN r.return_date - r.rental_date > INTERVAL '3 days, 12 hours' 
-		    THEN 'TRUE'::bool 
-		    ELSE 'FALSE'::bool 
+		    THEN TRUE
+		    ELSE FALSE 
 		    END) AS is_overdue,
 	   r.inventory_id,
        f.title AS film_title, 
