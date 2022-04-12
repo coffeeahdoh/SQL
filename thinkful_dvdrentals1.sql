@@ -1,3 +1,5 @@
+/* rental and return dates; film rented and from what store address; and customer name, email, and address. */
+
 SELECT r.rental_date, 
        r.return_date, 
 	   r.return_date - r.rental_date AS difference,
