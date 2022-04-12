@@ -1,3 +1,5 @@
+/* number rentals per customer per US state with at least 2 customers */
+
 WITH num_rentals AS (
     SELECT ad.district, r.customer_id, COUNT(*) AS rentals
 	FROM rental AS r 
