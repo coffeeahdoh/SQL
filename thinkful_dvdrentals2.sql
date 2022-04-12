@@ -1,4 +1,4 @@
-/* average number of G-rated films that each customer has rented */
+/* avg number G-rated films rented per customer */
 
 WITH g_films_count AS (
 	SELECT ad.district, cu.customer_id, COUNT(*) AS films
