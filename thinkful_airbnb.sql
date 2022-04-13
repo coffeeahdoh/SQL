@@ -1,6 +1,5 @@
-/* Write a query to return a table with the name, neighborhood, number of reviews, 
-average price, and percentage availability for the 10 listings with the most reviews. 
-The correct tables all start with sfo_. */
+/* Return name, neighborhood, total reviews / listing, avg price, and
+percentage availability for the top 10 listings */
 
 
 /* ~767+ msec, needs refinement */
@@ -12,14 +11,14 @@ WITH top10 AS (
     LIMIT 10),
 
 cal10 AS (SELECT cal.listing_id,
-	   CASE WHEN cal.available = 'f' 
+	   CASE WHEN cal.available = 'f'
 	             THEN 0
 				 ELSE 1
 				 END AS available_bool,
        SUBSTRING(cal.price, 2)::FLOAT AS price_float
 FROM sfo_calendar AS cal
      JOIN top10 AS top ON cal.listing_id = top.listing_id),
-	 	 
+
 cal_agg AS (SELECT listing_id,
        ROUND(CAST(SUM(available_bool)::FLOAT / COUNT(*)::FLOAT AS numeric), 2) AS percent_avail,
 	   ROUND(CAST(AVG(NULLIF(price_float, 0)) AS numeric), 2) AS avg_price
@@ -34,9 +33,9 @@ SELECT list.id,
 FROM sfo_listings AS list
     JOIN top10 AS top ON list.id = top.listing_id
 	JOIN cal_agg AS cal ON list.id = cal.listing_id;
-	
-	
-	
+
+
+
 /* SOLUTION, ~583 msec */
 WITH most_reviewed AS (
 SELECT listing_id, COUNT(id) as reviews
