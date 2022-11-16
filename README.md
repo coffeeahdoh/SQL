@@ -1,1 +1,3 @@
-A repository for SQL queries from Thinkful, DataCamp, CodeCademy, etc. 
+#SQL practice
+
+SQL queries from Thinkful, DataCamp, CodeCademy, etc.
